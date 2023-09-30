@@ -2,9 +2,9 @@
 
 班级： 21计科1
 
-学号： 202302200000
+学号： 20210302128
 
-姓名： 张三
+姓名： 肖锟
 
 Github地址：<https://github.com/yourusername/python_course>
 
@@ -114,7 +114,39 @@ def add_binary(a,b):
 代码运行结果的文本可以直接粘贴在这里。
 
 **注意：不要使用截图，Markdown文档转换为Pdf格式后，截图可能会无法显示。**
+### 基础篇
+#### 1.执行两次 'git commit'
+```bash
+git commit
+git commit
+```
+![第一题](/Experiments/img/Snipaste_2023-09-30_18-33-34.png)
+#### 2.用 'git branch <分支名>' 来创建分支，用 'git checkout <分支名>' 来切换到分支
+```bash
+git checkout -b bugFix
+```
+![第二题](/Experiments/img/Snipaste_2023-09-30_18-35-33.png)
+#### 3.创建新分支 bugFix,用 git checkout bugFix 命令切换到该分支,提交一次,用 git checkout main 切换回 main,再提交一次用 ,git merge 把 bugFix 合并到 main
+```bash
+git checkout -b bugFix
+git commit
+git checkout main
+git commit
+git merge bugFix
 
+```
+![第三题](/Experiments/img/Snipaste_2023-09-30_18-38-22.png)
+#### 4.要完成此关，执行以下操作：新建并切换到 bugFix 分支，提交一次，切换回 main 分支再提交一次，再次切换到 bugFix 分支，rebase 到 main 上
+```bash
+git checkout -b bugFix
+git commit
+git checkout main
+git commit
+git checkout bugFix
+git rebase main
+```
+
+![第四题](/Experiments/img/Snipaste_2023-09-30_18-46-45.png)
 ## 实验考查
 
 请使用自己的语言回答下面的问题，这些问题将在实验检查时用于提问和答辩，并要求进行实际的操作。
