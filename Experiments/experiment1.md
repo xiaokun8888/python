@@ -44,13 +44,62 @@ git config --global http.sslCAInfo "C:/Program Files/Git/mingw64/ssl/certs/ca-bu
 git config --global http.sslVerify false
 ```
 
+如果遇到错误：`error setting certificate file` 或者 `warning: http.sslcaInfo has multiple values`，请运行下面的命令重新指定git的安全证书：
+
+```bash
+git config --global --unset-all http.sslCAInfo
+git config --global http.sslCAInfo "C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt"
+```
+
+或者使用下面的命令编辑git配置文件，打开编辑器手动输入编辑配置信息
+
+```bash
+git config --global --edit
+```
+
 该仓库的课程材料后续会有更新，如果需要更新课程材料，可以在本地课程仓库的目录下运行下面的命令：
 
 ```bash
 git pull
 ```
 
-3. 注册Github账号，创建一个新的仓库，用于存放实验报告和实验代码。
+在本地的仓库内容有更新后，可以运行下面的命令，将本地仓库的内容和远程仓库的内容同步：
+
+```bash
+git push origin main
+```
+
+3. 注册Github账号或者Gitee帐号，创建一个新的仓库，例如：<https://gitee.com/zj204/python_task.git>，使用下面的命令将新建的仓库clone到本地：
+
+```bash
+git clone https://gitee.com/zj204/python_task.git
+```
+
+如果已经关联了远程仓库，显示结果如下：
+
+```bash
+origin  https://github.com/zhoujing204/python_course.git (fetch)
+origin  https://github.com/zhoujing204/python_course.git (push)
+```
+
+如果还没有关联远程仓库，可以使用你创建的远程仓库的地址和下面的命令，添加你要关联的远程仓库：
+
+```bash
+git remote add gitee https://gitee.com/zj204/python_task.git
+```
+
+接下来准备好你的远程仓库账号的邮箱地址和密码，使用下面的命令下载远程仓库的内容更新本地仓库：
+
+```bash
+git pull gitee main
+```
+
+运行下面的命令，将本地仓库的内容同步到远程仓库：
+
+```bash
+git push gitee main
+```
+
 4. 安装VScode，下载地址：[Visual Studio Code](https://code.visualstudio.com/)
 5. 安装下列VScode插件
    - GitLens
@@ -84,6 +133,11 @@ git pull
 查看[Markdown cheat-sheet](http://www.markdownguide.org/cheat-sheet)，学习Markdown的基础语法
 
 使用Markdown编辑器（例如VScode）编写本次实验的实验报告，包括[实验过程与结果](#实验过程与结果)、[实验考查](#实验考查)和[实验总结](#实验总结)，并将其导出为 **PDF格式** 来提交。
+
+如何将markdown文件转换为pdf格式的文件？
+
+- 安装vscode插件Markdown PDF，安装后重启vscode，打开markdown文件，按下`Ctrl+Shift+P`，输入`Markdown PDF: Export (pdf)`，回车即可导出pdf文件。
+- 使用Google Chrome浏览器，在Github网站或者Gitee网站打开你的仓库，浏览你的markdown文件，按下`Ctrl+P`，选择`打印`，选择`目标打印机`为`另存为PDF`，点击`保存`即可导出pdf文件。
 
 ## 实验过程与结果
 
