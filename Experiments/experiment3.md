@@ -1,14 +1,14 @@
 # 实验三 Python列表
 
-班级： 21计科1
+班级： 21计科1班
 
-学号： 202302200000
+学号： B20210302128
 
-姓名： 张三
+姓名： 肖锟
 
-Github地址：<https://github.com/yourusername/python_course>
+Github地址：<https://github.com/xiaokun8888/python.git>
 
-CodeWars地址：<https://www.codewars.com/users/yourusername>
+CodeWars地址：<https://www.codewars.com/users/xk666>
 
 ---
 
@@ -240,16 +240,103 @@ def add_binary(a,b):
 
 **注意：不要使用截图，Markdown文档转换为Pdf格式后，截图可能会无法显示。**
 
+### 第二部分 Codewars Kata挑战
+
+#### 第一题：3和5的倍数
+
+```python
+def solution(number):
+    s=[]
+    for i in range(1,number):
+        if i%3==0 or i%5==0:
+             s.append(i)
+    return sum(s)
+    #pass
+```
+
+#### 第二题： 重复字符的编码器
+
+```python
+def duplicate_encode(word):
+    word = word.lower()  # 将字符串转换为小写
+    s = []
+    for i in range(len(word)):
+        count = 0
+        for j in range(len(word)):
+            if word[i] == word[j]:
+                count += 1
+        if count == 1:
+            s.append('(')
+        else:
+            s.append(')')
+    return ''.join(s)  # 将列表转换为字符串并返回
+```
+
+#### 第三题：括号匹配
+
+```python
+def valid_braces(string):
+    braces={"(":")","[":"]","{":"}"}
+    s=[]
+    for i in string:
+        if i in braces.keys():
+            s.append(i)
+        else :
+            if len(s)==0 or i!=braces[s.pop()]:
+                return False
+    return len(s)==0
+```
+
+#### 第四题： 从随机三元组中恢复秘密字符串
+
+```python
+
+```
+
+#### 第五题： 去掉喷子的元音
+
+```python
+def disemvowel(string_):
+    
+    return "".join(c for c in string_ if c.lower() not in "aeiou")
+```
+
+### 第三部分 使用Mermaid绘制程序流程图
+
+#### 第一题（3和5的倍数）
+
+```mermaid
+flowchart LR
+    A[i=1] --> B{i< number and i%3=0 and i%5=0?}
+    B -->|yes| C[s=s+i]
+    B ---->|no| D[输出s]
+    C -->E[i=i+1]
+    E -->B
+```
+
 ## 实验考查
 
 请使用自己的语言并使用尽量简短代码示例回答下面的问题，这些问题将在实验检查时用于提问和答辩以及实际的操作。
 
 1. Python中的列表可以进行哪些操作？
+    添加元素，删除元素，切片和索引，迭代，合并，查找，排序，获取长度，清空，复制
 2. 哪两种方法可以用来对Python的列表排序？这两种方法有和区别？
+    使用 `sort()` 方法：这会原地排序列表，改变列表本身。默认情况下是升序排序，但您可以使用 `reverse=True` 参数进行降序排序。
+    使用 `sorted()` 函数：这会返回一个新的已排序列表，不会改变原始列表。您可以使用 `reverse=True` 参数进行降序排序。
 3. 如何将Python列表逆序打印？
+    `reversed()`可以将一个可迭代对象的元素逆序输出
+    [::-1]也可以将一个可迭代对象的元素逆序输出
 4. Python中的列表执行哪些操作时效率比较高？哪些操作效率比较差？是否有类似的数据结构可以用来替代列表？
+   Python中的列表在大多数情况下是效率很高的数据结构，尤其是对于随机访问和迭代。然而，对于插入和删除操作，特别是在列表的中间，效率较低，因为需要移动元素。
 5. 阅读《Fluent Python》Chapter 2. An Array of Sequence - Tuples Are Not Just Immutable Lists小节（p30-p35）。总结该小节的主要内容。
+    元组是不可变的，列表是可变的。
+    元组可以用作字典的键，列表不能。
+    元组可以用作集合的元素，列表不能。
+    元组拥有特定的语法规则，如在包含单个元素的元组中添加逗号，如 `(item,)`。
+    元组在多方面类似于列表，包括索引、切片和迭代。
+    元组通常用于表示不可更改的数据，例如日期、坐标、键值对等。元组的不可变性可以提供一定的安全性和性能优势。
 
 ## 实验总结
 
 总结一下这次实验你学习和使用到的知识，例如：编程工具的使用、数据结构、程序语言的语法、算法、编程技巧、编程思想。
+本次实验学习了列表的相关知识，了解到列表能进行许多操作如排序，复制，清空等等，掌握了列表的遍历，删除，添加和删除元素等功能，学习到了元组的相关知识和操作方法。明白在列表中插入和删除的效率较低，查询效率较高，对使用python来编程越来越习惯。
