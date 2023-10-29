@@ -6,7 +6,7 @@
 
 姓名： 肖锟
 
-Github地址：<https://github.com/yourusername/python_course>
+Github地址：<https://github.com/xiaokun8888/python.git>
 
 ---
 

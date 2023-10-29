@@ -1,14 +1,14 @@
 # 实验四 Python字典和while循环
 
-班级： 21计科1
+班级： 21计科1班
 
-学号： 202302200000
+学号： B20210302128
 
-姓名： 张三
+姓名： 肖锟
 
-Github地址：<https://github.com/yourusername/python_course>
+Github地址：<https://github.com/xiaokun8888/python.git>
 
-CodeWars地址：<https://www.codewars.com/users/yourusername>
+CodeWars地址：<https://www.codewars.com/users/xk666>
 
 ---
 
@@ -362,15 +362,115 @@ def add_binary(a,b):
 
 **注意：不要使用截图，Markdown文档转换为Pdf格式后，截图可能会无法显示。**
 
+### 第二部分 Codewars Kata挑战
+
+#### 第一题：淘气还是乖孩子
+
+```python
+def naughty_or_nice(data):
+    nt=0;
+    nc=0
+    for i in data.values():
+        for j in i.values():
+            if j=='Naughty':
+                nt+=1
+            else:
+                nc+=1
+    if nt>nc:
+        return "Naughty!"
+    else :
+        return "Nice!"
+```
+
+#### 第二题： 观察到的PIN
+
+```python
+def get_pins(observed):
+    #pass # TODO: This is your job, detective! 
+    key_dict = {
+        "1" : ["1", "2", "4"],
+        "2" : ["1", "2", "3", "5"],
+        "3" : ["2", "3", "6"],
+        "4" : ["1", "4", "5", "7"],
+        "5" : ["2", "4", "5", "6", "8"],
+        "6" : ["3", "5", "6", "9"],
+        "7" : ["4", "7", "8"],
+        "8" : ["5", "7", "8", "9", "0"],
+        "9" : ["6", "8", "9"],
+        "0" : ["8", "0"]
+}
+    list=[key_dict[c] for c in observed]
+    from itertools import product
+    return [''.join(item) for item in product(*list)]
+    
+```
+
+#### 第三题： RNA到蛋白质序列的翻译
+```python
+def protein(rna):
+    # your code here
+    a=[]
+    for i in range(0,len(rna),3):
+        c=rna[i:i+3]
+        if c in PROTEIN_DICT.keys():
+            if PROTEIN_DICT[c]!='Stop':
+                a.append(PROTEIN_DICT[c])
+            else:
+                break
+    return "".join(a)
+            
+```
+
+#### 第四题： 填写订单
+
+```python
+def fillable(stock, merch, n):
+    # Your code goes here.
+    if stock.get(merch,0)>=n:
+        return True
+    else:
+        return False
+```
+
+#### 第五题： 莫尔斯码解码器
+
+```python
+
+```
+
+### 第三部分 使用Mermaid绘制程序流程图
+
+第四题： 填写订单
+
+```mermaid
+flowchart LR
+    A[stock] --> B{ merch in stock?}
+    B -->|yes| C{merch.values>=n?}
+    B -->|no| D[merch.values=0]
+    C -->|yes| E[ruturn True]
+    C -->|no| F[return False]
+    D --> C
+```
+
 ## 实验考查
 
 请使用自己的语言并使用尽量简短代码示例回答下面的问题，这些问题将在实验检查时用于提问和答辩以及实际的操作。
 
 1. 字典的键和值有什么区别？
+    键是值的索引，值是键的内容，键的值是唯一的，而值可以是任何内容（字符，数字，列表）
 2. 在读取和写入字典时，需要使用默认值可以使用什么方法？
+    可以使用字典的 `get(key, default)` 方法来读取键 `key` 对应的值。如果键存在，它将返回对应的值，否则返回指定的默认值 `default`。这对于避免出现 KeyError 错误很有用
 3. Python中的while循环和for循环有什么区别？
-4. 阅读[PEP 636 – Structural Pattern Matching: Tutorial](https://peps.python.org/pep-0636/), 总结Python 3.10中新出现的match语句的使用方法。
+    - `for` 循环：`for` 循环通常用于迭代（遍历）可迭代对象，如列表、元组、字符串等。它在每次迭代中从可迭代对象中取出一个元素，执行指定的操作，直到可迭代对象中的所有元素都被处理。通常用于已知迭代次数或已知集合的情况。
+   - `while` 循环：`while` 循环在给定条件为真时重复执行一段代码块。它在每次循环迭代之前检查条件，如果条件为真，就执行循环体内的代码，然后再次检查条件。这种循环适用于不知道循环次数但要满足某个条件的情况。
 
+4. 阅读[PEP 636 – Structural Pattern Matching: Tutorial](https://peps.python.org/pep-0636/), 总结Python 3.10中新出现的match语句的使用方法。
+    - Python 3.10 引入了结构模式匹配（Structural Pattern Matching）的新特性，使用 `match` 语句进行模式匹配。它类似于 `switch` 或 `case` 语句，用于根据数据的结构进行多个条件匹配。
+   - `match` 语句允许您指定多个分支，每个分支都包含一个模式和相关的代码块。当匹配的模式与被匹配的对象相匹配时，相应的代码块将被执行。
+   - `match` 语句可以用于匹配各种对象，包括序列、字典、自定义类等。
+   - 它提供了强大的模式匹配功能，包括值匹配、类型匹配、嵌套模式匹配等。
 ## 实验总结
 
 总结一下这次实验你学习和使用到的知识，例如：编程工具的使用、数据结构、程序语言的语法、算法、编程技巧、编程思想。
+
+  本次实验我学习了字典和循环的相关知识和get()方法和match语句，重点是字典中的键和值的使用，还有字典的嵌套，以及如何索引相对应的值等等。
