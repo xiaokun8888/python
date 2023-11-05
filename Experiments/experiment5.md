@@ -1,14 +1,14 @@
 # 实验五 Python数据结构与数据模型
 
-班级： 21计科1
+班级： 21计科1班
 
-学号： 202302200000
+学号： B20210302128
 
-姓名： 张三
+姓名： 肖锟
 
-Github地址：<https://github.com/yourusername/python_course>
+Github地址：<https://github.com/xiaokun8888/python.git>
 
-CodeWars地址：<https://www.codewars.com/users/yourusername>
+CodeWars地址：<https://www.codewars.com/users/xk666>
 
 ---
 
@@ -118,11 +118,11 @@ pangram是一个至少包含每个字母一次的句子。例如，"The quick br
 一个彩色的三角形是由一排颜色组成的，每一排都是红色、绿色或蓝色。连续的几行，每一行都比上一行少一种颜色，是通过考虑前一行中的两个相接触的颜色而产生的。如果这些颜色是相同的，那么新的一行就使用相同的颜色。如果它们不同，则在新的一行中使用缺失的颜色。这个过程一直持续到最后一行，只有一种颜色被生成。
 
 例如：
+
 ```python
 Colour here:            G G        B G        R G        B R
 Becomes colour here:     G          R          B          G
 ```
-
 
 一个更大的三角形例子：
 
@@ -223,15 +223,162 @@ def add_binary(a,b):
 
 **注意：不要使用截图，因为Markdown文档转换为Pdf格式后，截图会无法显示。**
 
+### 第二部分 Codewars Kata挑战
+
+#### 第一题：停止逆转我的单词
+
+```python
+def spin_words(sentence):
+    # Your code goes here
+    result=[]
+    spinWords=sentence.split()
+    for i in spinWords:
+        if len(i)>=5 :
+            result.append(i[::-1])
+        else:
+            result.append(i)
+    result=" ".join(result)
+    return result
+```
+
+split函数通过指定分隔符对字符串进行切片，该题用的是空字符串来切片。
+i[::-1]表示将i的值进行反转。
+
+#### 第二题： 发现离群的数
+
+```python
+def find_outlier(integers):
+    j=[]
+    o=[]
+    for i in integers:
+        if i%2==0:
+            j.append(i)
+        else:
+            o.append(i)
+    if len(j)==1:
+        return j[0]
+    if len(o)==1:
+        return o[0]
+```
+
+#### 第三题： 检测Pangram
+
+```python
+def is_pangram(s):
+    s=s.lower()
+    for c in 'abcdefghijklmnopqrstuvwxyz':
+        if c in s:
+            i=1
+        else:
+            return False
+    return True
+```
+
+lower()函数是让字符串的字母都变为小写。
+
+#### 第四题： 数独解决方案验证
+
+```python
+def validate_sudoku(board):
+    elements=set(range(1,10))
+    for b in board:
+        if set(b)!=elements:
+            return False
+    for b in zip(*board):
+        if set(b)!=elements:
+            return False
+    for i in range(0,7,3):
+        for j in range(0,7,3):
+            if elements!={(board[w][q]) for q in range(j,j+3) for w in range(i,i+3)}:
+                return False
+    return True
+```
+
+集合set是一个无序的不重复元素序列。
+zip函数是给矩阵转置。
+
+#### 第五题： 疯狂的彩色三角形
+
+```python
+pass
+```
+
+### 第三部分 使用Mermaid绘制程序流程图
+
+#### 第三题： 检测Pangram
+
+```mermaid
+flowchart LR
+    A[s=s.lower ] --> B{ c='a,b,c,...x,y,z'? }
+    B -->|no| D[ruturn False]
+    B -->|yes| C{c='z'?} 
+    C --> E[return True]
+```
+
 ## 实验考查
 
 请使用自己的语言并使用尽量简短代码示例回答下面的问题，这些问题将在实验检查时用于提问和答辩以及实际的操作。
 
 1. 集合（set）类型有什么特点？它和列表（list）类型有什么区别？
+
+    集合set是一个无序的不重复元素序列,用`{}`创建，也可用`set()`函数。
+
+    区别是list是一个有序的，可重复的集合用`[]`来创建。
+
 2. 集合（set）类型主要有那些操作？
+
+    集合支持常见的集合操作，如添加元素、删除元素、交集、并集、差集等。一些常见的方法包括 add(), remove(), union(), intersection(), difference() 等。
+
 3. 使用`*`操作符作用到列表上会产生什么效果？为什么不能使用`*`操作符作用到嵌套的列表上？使用简单的代码示例说明。
+
+    使用 `*` 操作符可以复制列表中的元素，重复多次。例如，[1, 2] * 3 会生成 [1, 2, 1, 2, 1, 2]。
+    不能直接使用`*` 操作符作用到嵌套的列表上，因为`*`  操作符只复制了列表中的元素的引用，而不是创建新的嵌套列表。修改一个嵌套列表中的元素会影响所有重复的元素。
+
+```python
+# 使用 * 操作符重复列表中的元素
+original_list = [1, 2]
+repeated_list = original_list * 3
+print(repeated_list)  # 输出: [1, 2, 1, 2, 1, 2]
+
+# 不能直接使用 * 操作符重复嵌套的列表
+nested_list = [[1, 2]]
+repeated_nested_list = nested_list * 3
+repeated_nested_list[0][0] = 99
+print(repeated_nested_list)  # 输出: [[99, 2], [99, 2], [99, 2]]
+```  
+
 4. 总结列表,集合，字典的解析（comprehension）的使用方法。使用简单的代码示例说明。
+
+列表解析：用于生成新的列表，通过对原列表的每个元素应用某种操作或筛选条件来创建新的列表。
+
+示例：
+
+```python
+    Copy code
+    original_list = [1, 2, 3, 4, 5]
+    squared_list = [x**2 for x in original_list]  # 生成原列表每个元素的平方
+```
+
+集合解析：类似于列表解析，但用于创建新的集合，保证集合中的元素唯一。
+示例：
+
+```python
+    Copy code
+    original_list = [1, 2, 2, 3, 3, 4, 5, 5]
+    unique_set = {x for x in original_list}  # 创建包含原列表唯一元素的集合
+```
+
+字典解析：用于创建新的字典，通过对原字典的键值对应用某种操作或筛选条件来生成新的字典。
+示例：
+
+```python
+    Copy code
+    original_dict = {'a': 1, 'b': 2, 'c': 3}
+    squared_dict = {key: value**2 for key, value in original_dict.items()}  # 创建新字典，值为原字典值的平方
+```
 
 ## 实验总结
 
 总结一下这次实验你学习和使用到的知识，例如：编程工具的使用、数据结构、程序语言的语法、算法、编程技巧、编程思想。
+
+本次实验我学习了set集合和它的函数的使用，还了解了lower(),zip(),split()等函数。对字典和列表也有了更深入的理解。越来越明白列表，集合，字典解析的含义，以及其使用方法了。总的来说，通过这次实验，我的python水平有了一定的提高。
