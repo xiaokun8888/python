@@ -1,14 +1,14 @@
 # 实验六 Python函数
 
-班级： 21计科1
+班级： 21计科1班
 
-学号： 202302200000
+学号： B20210302128
 
-姓名： 张三
+姓名： 肖锟
 
-Github地址：<https://github.com/yourusername/python_course>
+Github地址：<https://github.com/xiaokun8888/python.git>
 
-CodeWars地址：<https://www.codewars.com/users/yourusername>
+CodeWars地址：<https://www.codewars.com/users/xk666>
 
 ---
 
@@ -352,14 +352,151 @@ def add_binary(a,b):
 
 **注意：不要使用截图，Markdown文档转换为Pdf格式后，截图可能会无法显示。**
 
+### 第二部分 Codewars Kata挑战
+
+#### 第一题：编码聚会1
+
+```python
+def count_developers(lst):
+    # Your code here
+    def is_ok(n):
+        if n['continent']=='Europe' and n['language']=='JavaScript':
+            return n
+    list1=list(filter(is_ok,lst))
+    return len(list1)
+```
+
+#### 第二题： 使用函数进行计算
+
+```python
+def zero(fun=None):  #your code here
+    return fun(0) if fun else 0
+def one(fun=None):  #your code here
+    return fun(1) if fun else 1
+def two(fun=None):  #your code here
+    return fun(2) if fun else 2
+def three(fun=None):  #your code here
+    return fun(3) if fun else 3
+def four(fun=None):  #your code here
+    return fun(4) if fun else 4
+def five(fun=None):  #your code here
+    return fun(5) if fun else 5
+def six(fun=None):  #your code here
+    return fun(6) if fun else 6
+def seven(fun=None):  #your code here
+    return fun(7) if fun else 7
+def eight(fun=None):  #your code here
+    return fun(8) if fun else 8
+def nine(fun=None):  #your code here
+    return fun(9) if fun else 9
+
+def plus(y):  #your code here
+    return lambda x:x+y
+def minus(y):  #your code here
+    return lambda x:x-y
+def times(y):  #your code here
+    return lambda x:x*y
+def divided_by(y):  #your code here
+    return lambda x:x//y
+```
+
+#### 第三题： 缩短数值的过滤器
+
+```python
+def shorten_number(suffixes, base):
+    def my_filter(data):
+        try:
+            number=int(data)
+        except (TypeError,ValueError):
+            return str(data)
+        else:
+            i=0
+            while number//base>=1 and i<len(suffixes)-1:
+                number//=base
+                i+=1
+            return str(number)+suffixes[i]
+    return my_filter
+
+```
+
+#### 第四题： 编码聚会7
+
+```python
+def find_senior(lst): 
+    
+    # 利用生成器作为max函数的参数，找到最大的年龄
+    mage = max(a['age'] for a in lst)
+    
+    # 利用列表推导返回结果
+    return [a for a in lst if a['age']==mage]
+```
+
+#### 第五题： Currying versus partial application
+
+```python
+pass
+```
+
+### 第三部分 使用Mermaid绘制程序流程图
+
+第一题：编码聚会1
+
+```mermaid
+flowchart LR
+    A[n in lst] --> B{is n.continent=='Europe' and n.language=='JavaScript'? }
+    B -->|yes| C[print n]
+    B -->|no| D[next one]
+    D --> B
+```
+
 ## 实验考查
 
 请使用自己的语言并使用尽量简短代码示例回答下面的问题，这些问题将在实验检查时用于提问和答辩以及实际的操作。
 
-1. 什么是函数式编程范式？
+1. 什么是函数式编程范式？ 
+   函数式编程是一种编程范式，它将计算视为数学函数的求值，并避免更改状态和可变数据。在函数式编程中，函数被看作是一等公民，可以作为参数传递给其他函数，也可以作为返回值。函数式编程强调不可变性、纯函数和避免副作用。它的目标是通过使用纯函数和不可变数据结构来实现代码的可读性、可维护性和可测试性。
 2. 什么是lambda函数？请举例说明。
+     Lambda 函数是一种匿名函数，它可以用作函数的一部分。它通常用于简单的操作，而不必为其定义一个完整的函数。Lambda 函数的语法为 `lambda arguments: expression`，其中 `arguments` 是参数列表，`expression` 是函数的返回值。
+
+   示例：
+
+   ```python
+   add = lambda x, y: x + y
+   result = add(3, 5)
+   print(result)  # 输出: 8
+   ```
+
 3. 什么是高阶函数？常用的高阶函数有哪些？这些高阶函数如何工作？使用简单的代码示例说明。
+    高阶函数：高阶函数是接受一个或多个函数作为参数，并/或返回一个函数作为结果的函数。在函数式编程中，高阶函数是一种常见的模式，它允许您以函数为基础构建更复杂的操作。
+
+    常用的高阶函数：
+
+    map(func, iterable): 对可迭代对象的每个元素应用函数。
+    filter(func, iterable): 过滤可迭代对象中的元素，只保留满足条件的元素。
+    reduce(func, iterable[, initializer]): 对可迭代对象中的元素进行累积，使用给定的二进制函数。这些高阶函数通过接受函数作为参数来实现通用性，使得我们能够将函数作为数据来操作，从而更灵活地构建程序。
+    实例：
+
+     ```python
+     # map 函数
+     numbers = [1, 2, 3, 4, 5]
+     squared = map(lambda x: x**2, numbers)
+     print(list(squared))  # 输出: [1, 4, 9, 16, 25]
+
+     # filter 函数
+     even_numbers = filter(lambda x: x % 2 == 0, numbers)
+     print(list(even_numbers))  # 输出: [2, 4]
+
+     # reduce 函数
+     from functools import reduce
+     product = reduce(lambda x, y: x * y, numbers)
+     print(product)  # 输出: 120
+     ```
 
 ## 实验总结
 
 总结一下这次实验你学习和使用到的知识，例如：编程工具的使用、数据结构、程序语言的语法、算法、编程技巧、编程思想。
+本次实验我学习了函数的使用，了解了函数式编程，以及`lamdba`函数的使用，以及高阶函数是如何使用的，例如：
+     - `map(func, iterable)`: 对可迭代对象的每个元素应用函数。
+     - `filter(func, iterable)`: 过滤可迭代对象中的元素，只保留满足条件的元素。
+     - `reduce(func, iterable[, initializer])`: 对可迭代对象中的元素进行累积，使用给定的二进制函数。
+本次实验我收获了很多函数相关的知识。
