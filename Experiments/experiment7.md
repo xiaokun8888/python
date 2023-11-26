@@ -1,14 +1,14 @@
 # 实验七 Python面向对象编程
 
-班级： 21计科1
+班级： 21计科1班
 
-学号： 202302200000
+学号： B20210302128
 
-姓名： 张三
+姓名： 肖锟
 
-Github地址：<https://github.com/yourusername/python_course>
+Github地址：<https://github.com/xiaokun8888/python.git>
 
-CodeWars地址：<https://www.codewars.com/users/yourusername>
+CodeWars地址：<https://www.codewars.com/users/xk666>
 
 ---
 
@@ -312,14 +312,247 @@ def add_binary(a,b):
 
 **注意：不要使用截图，Markdown文档转换为Pdf格式后，截图可能会无法显示。**
 
+### 第二部分 Codewars Kata挑战
+
+#### 第一题：面向对象的海盗
+
+```python
+class Ship:
+    def __init__(self, draft, crew):
+        self.draft = draft
+        self.crew = crew
+    # Your code here
+    def is_worth_it(self):
+        if (self.draft-1.5*self.crew>20):
+            return True
+        else:
+            return False
+```
+
+#### 第二题： 搭建积木
+
+```python
+class Block:
+    # Good Luck!
+    def __init__(self, a):
+        self.width=a[0]
+        self.length=a[1]
+        self.height=a[2]
+        
+    def get_width(self):
+        return self.width
+    
+    def get_length(self):
+        return self.length
+    
+    def get_height(self):
+        return self.height
+    
+    def get_volume(self):
+        return self.width*self.height*self.length
+    
+    def get_surface_area(self):
+        return 2*(self.width*self.height+self.width*self.length+self.length*self.height)
+```
+
+#### 第三题： 分页助手
+
+```python
+# TODO: complete this class
+import math
+class PaginationHelper:
+    
+    # The constructor takes in an array of items and an integer indicating
+    # how many items fit within a single page
+    def __init__(self, collection, items_per_page):
+        self.collection=collection
+        self.items_per_page=items_per_page
+    
+    # returns the number of items within the entire collection
+    def item_count(self):
+        return len(self.collection)
+    
+    # returns the number of pages
+    def page_count(self):
+        return math.ceil(self.item_count()/self.items_per_page)
+    
+    # returns the number of items on the given page. page_index is zero based
+    # this method should return -1 for page_index values that are out of range
+    def page_item_count(self, page_index):
+        if (page_index+1)<self.page_count() and page_index>=0:
+            return self.items_per_page
+        elif (page_index+1)==self.page_count() and page_index>=0:
+            last=self.item_count()%self.items_per_page
+            return self.items_per_page if last==0 else last
+        else:
+            return -1
+        
+    
+    # determines what page an item at the given index is on. Zero based indexes.
+    # this method should return -1 for item_index values that are out of range
+    def page_index(self, item_index):
+        if(item_index<self.item_count() and item_index>=0):
+            return item_index//self.items_per_page
+        else:
+            return -1
+```
+
+#### 第四题： 向量（Vector）类
+
+```python
+from math import sqrt
+
+class Vector:
+    #Python 元组 tuple() 函数将列表转换为元组
+    def __init__(self, it):
+        self._v = tuple(x for x in it)
+
+    # 把打印元组时的空格去掉
+    def __str__(self):
+        return str(self._v).replace(' ', '')
+    
+    # 检查两个向量是否长度相等    
+    def check(self, other):
+        if not len(self._v) == len(other._v):
+            raise ValueError('Vectors of different length')
+    
+    #zip() 函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的列表。
+    def add(self, other):
+        self.check(other)
+        return Vector(s + o for s, o in zip(self._v, other._v))
+
+    def subtract(self, other):
+        self.check(other)
+        return Vector(s - o for s, o in zip(self._v, other._v))
+    
+    def dot(self, other):
+        self.check(other)
+        return sum(s*o for s, o in zip(self._v, other._v))
+    
+    def norm(self):
+        return sqrt(sum(s**2 for s in self._v))
+    
+    def equals(self,other):
+        return self._v==other._v
+```
+
+#### 第五题： Codewars风格的等级系统
+
+```python
+#**
+class User ():    
+    def __init__ (self):
+        self.RANKS = [-8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8]
+        self.rank = -8
+        self.rank_index = 0
+        self.progress = 0
+        
+    def inc_progress (self, rank):
+        rank_index = self.RANKS.index(rank)
+        
+        # 计算rank的差，得出可以获得多少进度
+        
+        # 完成的是同等级的题目
+        if rank_index == self.rank_index:
+            self.progress += 3
+            
+        # 完成的是比当前等级低一级的题目
+        elif rank_index == self.rank_index - 1:
+            self.progress += 1
+            
+        # 完成的是比当前等级高的题目
+        elif rank_index > self.rank_index:
+            difference = rank_index - self.rank_index
+            self.progress += 10 * difference * difference
+        
+        # 如果进度大于100，升级，每减去100进度，升一级    
+        while self.progress >= 100:
+            self.rank_index += 1
+            self.rank = self.RANKS[self.rank_index]
+            self.progress -= 100    
+        
+            # 如果升到8级（最高级），进度被置为0
+            if self.rank == 8:
+                self.progress = 0
+                return
+```
+
+### 第三部分 使用Mermaid绘制程序类图
+
+第一题：面向对象的海盗
+
+```mermaid
+---
+title: ship
+---
+classDiagram
+    class Ship{
+    +float draft
+    +int crew
+    +is_worth_it()
+    }
+```
+
 ## 实验考查
 
 请使用自己的语言并使用尽量简短代码示例回答下面的问题，这些问题将在实验检查时用于提问和答辩以及实际的操作。
 
 1. Python的类中__init__方法起什么作用？
+    Python 类中的一个特殊方法，用于在创建对象时进行初始化操作。
 2. Python语言中如何继承父类和改写（override）父类的方法。
+    Python 中，通过在子类的定义中指定父类，可以继承父类的属性和方法。
+    如果子类中定义了与父类同名的方法，则子类的方法会覆盖（override）父类的方法。
+
 3. Python类有那些特殊的方法？它们的作用是什么？请举三个例子并编写简单的代码说明。
+    - Python 中的特殊方法以双下划线 `__` 开头和结尾，用于定义类的一些特殊行为。
+   - 以下是三个常用的特殊方法示例：
+
+- `__str__` 方法：用于定义对象的字符串表示形式，通常在使用 `print` 函数时调用。
+
+```python
+class MyClass:
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        return f"MyClass with value: {self.value}"
+
+obj = MyClass(42)
+print(obj)  # 输出："MyClass with value: 42"
+```
+
+- `__len__` 方法：用于定义对象的长度，通常在调用内置函数 `len` 时调用。
+
+```python
+class MyList:
+    def __init__(self, items):
+        self.items = items
+
+    def __len__(self):
+        return len(self.items)
+
+my_list = MyList([1, 2, 3, 4, 5])
+print(len(my_list))  # 输出：5
+```
+
+- `__add__` 方法：用于定义对象之间的加法操作，通常在使用 `+` 运算符时调用。
+
+```python
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
+
+p1 = Point(1, 2)
+p2 = Point(3, 4)
+result = p1 + p2
+print(result.x, result.y)  # 输出：4 6
+```
 
 ## 实验总结
 
 总结一下这次实验你学习和使用到的知识，例如：编程工具的使用、数据结构、程序语言的语法、算法、编程技巧、编程思想。
+本次实验我学习类的创建和使用，`__init__`用来给函数初始化，以及python语言继承父类和重写的方法，也学习到了一些函数，例如zip函数和tuple() 函数的用法。此外还了解如何用`mermaid`建立类图。本次实验为以后的python学习打下了好的基础。
