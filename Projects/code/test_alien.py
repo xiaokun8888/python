@@ -1,3 +1,4 @@
+from unittest.mock import Mock
 import pygame
 import pytest
 from pygame.sprite import GroupSingle

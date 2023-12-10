@@ -1,6 +1,6 @@
 import pygame.font
 from pygame.sprite import Group
-
+import os
 from ship import Ship
 
 
@@ -24,7 +24,8 @@ class Scoreboard:
         self.prep_high_score()
         self.prep_level()
         self.prep_ships()
-
+        #self.save_score()
+        
     def prep_score(self):
         """Turn the score into a rendered image."""
         rounded_score = round(self.stats.score, -1)
@@ -81,3 +82,12 @@ class Scoreboard:
         self.screen.blit(self.high_score_image, self.high_score_rect)
         self.screen.blit(self.level_image, self.level_rect)
         self.ships.draw(self.screen)
+# */
+#     def save_score(self):
+#         file_path = r'./Projects/code/x.txt'
+#         if not os.path.isfile(file_path):
+#             with open(file_path, 'w') as file:
+#                 file.write(str(self.stats.high.score) + '\n')
+#         else:
+#             with open(file_path, 'w') as file:
+#                 file.write(str(self.stats.high.score) + '\n')
