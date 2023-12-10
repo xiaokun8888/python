@@ -275,9 +275,9 @@ class AlienInvasion:
         self.screen.fill(self.settings.bg_color)
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
+        self.stars.draw(self.screen)
         self.ship.blitme()
         self.aliens.draw(self.screen)
-        self.stars.draw(self.screen)
         #画出屏幕信息.
         self.sb.show_score()
 
